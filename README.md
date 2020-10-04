@@ -1,2 +1,4 @@
-# recipe-manager
-An Angular application for managing recipes
+# Recipe Manager
+
+## Angular application for buying/managing recipes and ingredients
+
