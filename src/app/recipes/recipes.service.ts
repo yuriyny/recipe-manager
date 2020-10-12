@@ -7,12 +7,13 @@ import { Subject } from 'rxjs';
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
 
-    private recipes: Recipe[] = [new Recipe('Musched Potato', 'First recipe', 'https://static01.nyt.com/images/2013/06/26/dining/26JPFLEX1/26JPFLEX1-articleLarge-v3.jpg', 
-    [new Ingredient('Meat',1),new Ingredient('French Fries', 20)]),
-    new Recipe('Pasta', 'Second recipe', 'https://static01.nyt.com/images/2013/06/26/dining/26JPFLEX1/26JPFLEX1-articleLarge-v3.jpg', 
-    [new Ingredient('Buns', 2), new Ingredient('Meat',2)])];
+    // private recipes: Recipe[] = [new Recipe('Musched Potato', 'First recipe', 'https://static01.nyt.com/images/2013/06/26/dining/26JPFLEX1/26JPFLEX1-articleLarge-v3.jpg', 
+    // [new Ingredient('Meat',1),new Ingredient('French Fries', 20)]),
+    // new Recipe('Pasta', 'Second recipe', 'https://static01.nyt.com/images/2013/06/26/dining/26JPFLEX1/26JPFLEX1-articleLarge-v3.jpg', 
+    // [new Ingredient('Buns', 2), new Ingredient('Meat',2)])];
     //recipeSelected= new EventEmitter<Recipe>();
     //recipeSelected= new Subject<Recipe>();
+    private recipes: Recipe[] = [];
     getRecipes(){
         return this.recipes.slice();
     }
@@ -33,6 +34,10 @@ export class RecipeService{
     }
     deleteRecipe(id:number){
         this.recipes.splice(id,1);
+        this.recipeChanged.next(this.recipes.slice());
+    }
+    setRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
         this.recipeChanged.next(this.recipes.slice());
     }
 
